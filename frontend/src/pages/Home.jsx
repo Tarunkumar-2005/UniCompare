@@ -20,10 +20,12 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const fetchColleges = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/colleges`, {
+      const { data } = await axios.get(`${API_URL}/api/colleges`, {
         params: { search, location, maxFees, page, limit: 6 }
       });
       setColleges(data.colleges);
@@ -38,7 +40,7 @@ const Home = () => {
     if (!user) return;
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get(`http://localhost:5000/api/user/saved`, config);
+      const { data } = await axios.get(`${API_URL}/api/user/saved`, config);
       setSavedIds(data.map(c => typeof c === 'object' ? c._id : c));
     } catch (error) {
       console.error("Error fetching saved", error);
@@ -66,7 +68,7 @@ const Home = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.post(`http://localhost:5000/api/user/save/${collegeId}`, {}, config);
+      const { data } = await axios.post(`${API_URL}/api/user/save/${collegeId}`, {}, config);
       setSavedIds(data.savedColleges);
     } catch (error) {
       console.error("Error toggling save", error);

@@ -13,16 +13,18 @@ const CollegeDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/colleges/${id}`);
+        const { data } = await axios.get(`${API_URL}/api/colleges/${id}`);
         setCollege(data);
         
         // Check if saved
         if (user) {
           const config = { headers: { Authorization: `Bearer ${user.token}` } };
-          const res = await axios.get(`http://localhost:5000/api/user/saved`, config);
+          const res = await axios.get(`${API_URL}/api/user/saved`, config);
           const savedIds = res.data.map(c => typeof c === 'object' ? c._id : c);
           setIsSaved(savedIds.includes(data._id));
         }
@@ -41,7 +43,7 @@ const CollegeDetail = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post(`http://localhost:5000/api/user/save/${id}`, {}, config);
+      await axios.post(`${API_URL}/api/user/save/${id}`, {}, config);
       setIsSaved(!isSaved);
     } catch (error) {
       console.error("Error toggling save", error);

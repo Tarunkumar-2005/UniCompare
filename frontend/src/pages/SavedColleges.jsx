@@ -11,6 +11,8 @@ const SavedColleges = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const fetchSavedColleges = async () => {
     if (!user) {
       navigate('/login');
@@ -18,7 +20,7 @@ const SavedColleges = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get(`http://localhost:5000/api/user/saved`, config);
+      const { data } = await axios.get(`${API_URL}/api/user/saved`, config);
       setSavedColleges(data);
     } catch (error) {
       console.error("Error fetching saved colleges", error);
@@ -33,7 +35,7 @@ const SavedColleges = () => {
   const handleSaveToggle = async (collegeId) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post(`http://localhost:5000/api/user/save/${collegeId}`, {}, config);
+      await axios.post(`${API_URL}/api/user/save/${collegeId}`, {}, config);
       // Remove from list since it was unsaved
       setSavedColleges(prev => prev.filter(c => c._id !== collegeId));
     } catch (error) {

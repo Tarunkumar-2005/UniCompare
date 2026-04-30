@@ -64,13 +64,11 @@ const mockColleges = [
     image: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?q=80&w=1000&auto=format&fit=crop"
   }
 ];
+//here use env process.env.mongouri for local and atlasdb url for cloud
 
 const seedDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/unicompare', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.ATLASDB_URL);
     console.log('MongoDB connected for seeding...');
 
     await College.deleteMany({});

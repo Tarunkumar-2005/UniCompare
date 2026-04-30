@@ -17,10 +17,9 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/colleges', collegeRoutes);
 app.use('/api/user', userRoutes);
-
+//here use process.env.mongouri for local and atlasdb url for cloud
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/unicompare', {
-})
+mongoose.connect(process.env.ATLASDB_URL)
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
