@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 //localj=host 5000
-  const API_URL = 'https://unicompare-qtmp.onrender.com';
+  const API_URL = 'https://unicompare-81ya.onrender.com';
 
   const login = async (email, password) => {
     try {

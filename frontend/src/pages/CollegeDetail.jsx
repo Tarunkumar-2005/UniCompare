@@ -13,7 +13,7 @@ const CollegeDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const API_URL = 'https://unicompare-81ya.onrender.com';
 
   useEffect(() => {
     const fetchDetails = async () => {

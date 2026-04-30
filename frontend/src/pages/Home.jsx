@@ -20,7 +20,7 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const API_URL = 'https://unicompare-81ya.onrender.com';
 
   const fetchColleges = async () => {
     setLoading(true);

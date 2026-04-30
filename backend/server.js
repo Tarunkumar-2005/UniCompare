@@ -19,7 +19,8 @@ app.use('/api/colleges', collegeRoutes);
 app.use('/api/user', userRoutes);
 //here use process.env.mongouri for local and atlasdb url for cloud
 // Connect to MongoDB
-mongoose.connect(process.env.ATLASDB_URL)
+const dbUri = process.env.ATLASDB_URL || process.env.MONGO_URI;
+mongoose.connect(dbUri)
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
