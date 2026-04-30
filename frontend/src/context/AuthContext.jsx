@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   }, []);
-
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+//localj=host 5000
+  const API_URL = 'https://unicompare-qtmp.onrender.com';
 
   const login = async (email, password) => {
     try {
