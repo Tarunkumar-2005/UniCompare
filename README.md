@@ -96,5 +96,5 @@ Make sure you have Node.js installed.
 
 ## 1️⃣ Clone the Repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/Tarunkumar-2005/UniCompare
 cd repo
